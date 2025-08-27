@@ -30,14 +30,14 @@
             ]
           },
           {
-            "group": "Customization",
+            "group": "AI Sourcing Agent",
             "pages": [
               "essentials/settings",
               "essentials/navigation"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Cheating and Fraud detection agent",
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -46,7 +46,7 @@
             ]
           },
           {
-            "group": "AI tools",
+            "group": "ATS Integration",
             "pages": [
               "ai-tools/cursor",
               "ai-tools/claude-code",
