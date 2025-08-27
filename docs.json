@@ -32,25 +32,16 @@
           {
             "group": "AI Sourcing Agent",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
             ]
           },
           {
             "group": "Cheating and Fraud detection agent",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
             ]
           },
           {
             "group": "ATS Integration",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
             ]
           }
           
@@ -60,19 +51,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
           "anchor": "Blog",
           "href": "https://asendia.ai/blogs",
           "icon": "newspaper"
+        },
+        {
+          "anchor": "Socials",
+          "href": "https://www.linkedin.com/company/asendia-ai/posts/?feedView=videos&viewAsMember=true",
+          "icon": "linkedin"
         }
       ]
     }
