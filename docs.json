@@ -22,6 +22,14 @@
             ]
           },
           {
+            "group": "AI Interview Agent",
+            "pages": [
+              "ai-interview/ai-interview-overview",
+              "ai-interview/create-company-profile",
+              "ai-interview/create-your-first-ai-interview"
+            ]
+          },
+          {
             "group": "Customization",
             "pages": [
               "essentials/settings",
@@ -45,6 +53,7 @@
               "ai-tools/windsurf"
             ]
           }
+          
         ]
       }
     ],
