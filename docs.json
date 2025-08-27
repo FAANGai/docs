@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Asendia Starter Kit",
   "colors": {
     "primary": "#845aa2",
     "light": "#845aa2",
