@@ -1,0 +1,185 @@
+---
+title: "Recruiterflow x Asendia AI integration"
+description: "Integrate Asendia with Recruiterflow"
+---
+
+## Recruiterflow Integration – Customer Guides
+
+Below you’ll find **two** short, non‑technical guides:
+
+1. **Connecting Recruiterflow to Our Platform** – what you need to do once.
+2. **What Happens After You Connect** – how everything works automatically.
+
+---
+
+### Part A. Guide for Connecting Recruiterflow to Our Platform
+
+### 1. What You’ll Need
+
+- A **Recruiterflow** account with admin access.
+- A modern web browser (Chrome, Firefox, Edge).
+
+### Generate an API Key in Recruiterflow
+
+1. Log into **Recruiterflow**.
+2. Click your **avatar → Settings**.
+3. Go to **Integrations → API Keys**.
+4. Click **Generate New Key**.
+   - Enter the **Label**: `Integration with Asendia`.
+5. Copy the generated key and store it in a safe location — you’ll need it in the next step.
+
+👉 **If you don’t see the option to generate an API key**, please contact **Recruiterflow Support** and request them to generate one for you.
+
+### 3. Add the “Asendia AI Interview” Stage
+
+1. In Recruiterflow, go to **Settings** → **Job Settings**.
+2. Click **Edit Job Template**.
+3. Go to **Interview plan**
+4. Name the stage **Asendia AI Interview**.
+5. Click **Save** and drag it into the position where you’d like the AI assessment to occur.
+
+![Image(5) Edited Pn](/images/image\(5\)-Edited.png)
+
+\*\*Recommended \*\*Add another stage called **Asendia AI Interview Submission** at the end of your funnel. Our platform moves candidates here automatically after their interview is complete.
+
+![Image(6) Pn](/images/image\(6\).png)
+
+### Create Custom Fields in Recruiterflow
+
+1. Log into **Recruiterflow**.
+2. Navigate to **Settings → Custom Fields → Job**.
+3. Click **\+ Job Field**.
+4. Create the following fields:
+
+### 2. Asendia Interview Language
+
+- **Field Type**: Single-select
+- **Options**:
+  - English
+  - French
+- **Roles with View/Edit Permission**: Recruiter, Contact
+
+### 3. Asendia Hybrid Interview Question
+
+- **Field Type**: Rich Text
+- **Purpose**: Add detailed hybrid interview questions.
+- **Roles with View/Edit Permission**: Admin, Recruiter, Contact
+
+### 4. Asendia Hybrid Interview
+
+- **Field Type**: Yes/No
+- **Purpose**: Checkbox to indicate if a hybrid interview is required.
+- **Roles with View/Edit Permission**: Admin, Recruiter, Contact
+
+![Image(7) Pn](/images/image\(7\).png)
+
+### 5. Connect Recruiterflow in Our Platform
+
+1. Log into **Our Platform** → **Integrations** → **Recruiterflow**.
+2. Paste the API key you copied in Step 2.
+3. Click **Connect**.
+4. A green **Connected successfully** badge confirms everything is set.
+
+![Image(8) Pn](/images/image\(8\).png)
+
+### Part B. After You Connect – What to Expect
+
+### 1. Instant One‑Time Actions
+
+| Behind the Scenes      | What You’ll Notice                                     |
+| :--------------------- | :----------------------------------------------------- |
+| **API Key Verified**   | A green **Connected** badge.                           |
+| **Initial Job Import** | Your open Recruiterflow roles appear in our Jobs list. |
+
+### 2. Continuous Job Sync
+
+- **New job** → appears in our platform within ~1 minute.
+- **Job edits or closures** → update on their own.
+
+### 3. Automated Candidate Invitations
+
+1. You move a candidate to **Asendia AI Interview** in Recruiterflow.
+
+<img
+  src="/images/image(9).png"
+  alt="Image(9) Pn"
+  title="Image(9) Pn"
+  className="mx-auto"
+  style={{ width:"25%" }}
+/>
+
+2. Our platform instantly sends a personalized invitation email with a unique link.
+
+<img
+  src="/images/image(10).png"
+  alt="Image(10) Pn"
+  title="Image(10) Pn"
+  className="mx-auto"
+/>
+
+### 4. Results Flow Back to Recruiter flow
+
+After candidate finishes up the AI interview:
+
+- We attach a **PDF report** and **video link** to the candidate’s Recruiterflow profile.
+- The candidate is moved to **Asendia AI Interview Submission**.
+
+<img
+  src="/images/image(11).png"
+  alt="Image(11) Pn"
+  title="Image(11) Pn"
+  className="mx-auto"
+  style={{ width:"80%" }}
+/>
+
+<img
+  src="/images/image(12).png"
+  alt="Image(12) Pn"
+  title="Image(12) Pn"
+  className="mx-auto"
+  style={{ width:"84%" }}
+/>
+
+### 7. Quick Troubleshooting
+
+| Symptom             | Check                                                                              |
+| :------------------ | :--------------------------------------------------------------------------------- |
+| **Email not sent**  | Candidate must be in the **Asendia AI Interview** stage and have an email address. |
+| **Job not syncing** | Job must be **Open** in Recruiterflow.                                             |
+
+---
+
+### Customizing the AI Interview Experience
+
+You can personalize how candidates interact with the AI interviewer by configuring **voice, image, and page elements**.
+
+1. Go to https://recruiter.asendia.ai/
+
+<img
+  src="/images/image(13).png"
+  alt="Image(13) Pn"
+  title="Image(13) Pn"
+  className="mx-auto"
+  style={{ width:"78%" }}
+/>
+
+### 1. Setting Up Interviewer Voice & Image
+
+1. Go to [**Asendia Dashboard**](https://recruiter.asendia.ai/) → **AI Interviewer → Customize**.
+2. In the left menu, click **Interviewer Avatar**.
+   - Here you can **choose the interviewer’s appearance** (image/avatar).
+
+This ensures that the AI interviewer reflects your organization’s branding
+
+### 2. Hiding Fields from Candidates
+
+1. Go to **AI Interviewer → Customize → Page Elements**.
+2. You’ll see a list of elements shown on the application page (e.g., Resume Upload, Location, Company Name, Department, Seniority Level, Workspace Type, Interview Language).
+3. To **hide a field from candidates**, simply **toggle it off**.
+   - Example: Switch off _Location_ if you don’t want candidates to see job location details.
+4. Click **Preview Changes** to verify how the candidate will see the application form.
+
+## **Summary**
+
+- **Avatar Image** → Set inside **Interviewer Avatar**.
+- **Hiding Fields** → Controlled under **Page Elements** with on/off toggles.

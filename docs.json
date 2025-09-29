@@ -42,6 +42,7 @@
           {
             "group": "ATS Integration",
             "pages": [
+              "ats-integration/recruiterflow"
             ]
           }
           
