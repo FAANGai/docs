@@ -33,7 +33,9 @@
             "group": "AI Sourcing Agent",
             "pages": [
               "ai-sourcing/ai-smart-search",
-              "ai-sourcing/findingtalent"
+              "ai-sourcing/Findingtalent",
+              "ai-sourcing/AI-filters",
+              "ai-sourcing/Profile-view"
             ]
           },
           {
