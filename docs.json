@@ -11,12 +11,12 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Guides",
         "groups": [
           {
             "group": "Getting started",
             "pages": [
-              "index",
-              "quickstart"
+              "index"
             ]
           },
           {
