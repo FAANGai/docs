@@ -1,0 +1,493 @@
+---
+title: "Bullhorn x Asendia Integration Guide"
+description: "This guide explains how to set up AI interviews, trigger them for candidates, and view the results directly within Bullhorn."
+---
+
+## **Overview**
+
+This guide will help you connect your Bullhorn ATS system with Asendia's AI-powered interview platform. Once connected, Asendia will automatically sync your job postings, send interview invitations to candidates, upload interview results back to Bullhorn, and provide AI-powered sourcing directly within Bullhorn.
+
+## **Key Features**
+
+- **Automatic Job Sync**             - All open jobs in Bullhorn are synced to Asendia
+- **Magic Link Invites**                 - Candidates automatically receive interview invitations
+- **Resume Auto-Fetch**             - Candidate resumes are automatically pulled from Bullhorn
+- **Interview Results Upload**    - PDF assessment reports and notes uploaded to Bullhorn
+- **Custom Bullhorn Tabs**         - View interview results and source candidates within Bullhorn
+- **Webhook Integration**           - Real-time candidate stage updates trigger invites
+- **Bulk Candidate Export**        - Export Asendia candidates to Bullhorn with one click
+
+---
+
+## **Prerequisites**
+
+Before starting, make sure you have:
+
+- Your Bullhorn Client ID
+- Your Bullhorn Client Secret
+- Your Bullhorn username and password (API-enabled account)
+- Admin access to your Bullhorn system
+- Access to your Asendia dashboard
+
+---
+
+## **Step 1: Create OAuth Application in Bullhorn**
+
+### **1.0 Retrieve credentials**
+
+- Corporation ID
+- Client ID
+- Client Secret
+- API Username
+- API Password
+
+**You can retrieve the credentials by contacting your Bullhorn Support team and asking them to set up API credentials for our integration partner, Asendia AI. You can adapt the message below:**
+
+> Hello Bullhorn Support,
+>
+> We’re currently working with a certified development partner, Asendia AI, and would like to enable their integration within our Bullhorn environment.
+>
+> Could you please provision an API user for this partner and provide the following details once created?
+>
+> - Corporation ID
+> - Client ID
+> - Client Secret
+> - API username
+> - API password
+>
+> Since Asendia AI is a development partner, please ensure that the Terms of Service requirement is disabled for this API user.
+>
+> Thank you in advance for your help.
+
+### **1.1 Enable API Access for User Account**
+
+1. Go to **Menu → Admin → Users**
+2. Find the user account that will be used for API access
+3. Edit the user and ensure **"API User"** checkbox is enabled
+4. Save changes
+
+**WARNING**
+
+If the API user account requires SSO or Terms of Service acceptance, you may need to complete interactive OAuth authorization (see Troubleshooting section).
+
+---
+
+## **Step 2: Connect Bullhorn in Asendia Dashboard**
+
+### **2.1 Access Integration Settings**
+
+1. Log into your Asendia dashboard at https://recruiter.asendia.ai
+2. Navigate to **Settings → Integrations**
+3. Find the **Bullhorn** integration card
+4. Click **"Connect"** or **"Configure"** button
+
+### **2.2 Enter Your Credentials**
+
+In the Bullhorn connection modal, enter:
+
+- **Client ID**: Your Bullhorn OAuth application Client ID
+- **Client Secret**: Your Bullhorn OAuth application Client Secret
+- **Username**: Your Bullhorn username (the API-enabled account)
+- **Password**: Your Bullhorn password
+
+<img
+  src="/images/1.png"
+  alt="1"
+  title="1"
+  className="mx-auto"
+/>
+
+### **2.3 Complete the Connection**
+
+1. Click the **"Connect"** button
+2. Wait for the connection to be established (may take 10-30 seconds)
+3. You should see a **success message** confirming the connection
+4. The integration card will show **"Connected"** status
+
+## **Step 3: Verify the Integration**
+
+### **3.1 Check Job Sync**
+
+After connection, Asendia will automatically:
+
+- Sync all **open job postings** from Bullhorn
+- Create **assessment templates** for each job
+- Display synced jobs in your Asendia dashboard
+
+---
+
+## **Step 4: Configure Candidate Status (Bullhorn)**
+
+For automatic interview invites to work, you need to set up a specific status in Bullhorn.
+
+### **4.1 Create "Asendia Interview" Status**
+
+1. In Bullhorn, go to **Menu → Admin → System Settings → Submission Statuses**
+2. Add a new status called **"Asendia Interview"**
+3. Position it in your workflow where candidates should receive AI interview invites
+
+### **4.2 Status Sequence (Recommended)**
+
+Configure your submission statuses in this order:
+
+1. **Submission** - Initial application
+2. **Client Submission** - Submitted to client
+3. **Asendia Interview** ⭐ - Triggers AI interview invite
+4. **Asendia Assessment Complete** - After interview completion
+5. Interview (Human)
+6. Offer
+
+**TIP**
+
+Asendia automatically advances candidates from "Asendia Interview" to "Asendia Assessment Complete" after they finish the AI interview.
+
+### **2. Setup Custom Tabs**
+
+You need to add Asendia as custom tabs in the Admin settings of Bullhorn to make them visible. In Bullhorn, go into Admin \> View Layout.
+
+- Select the `Candidate` Field Map Entity and go into the `Custom Tabs` tab.
+- Click Add New. The name for the tab should be `Asendia AI` and the URL should be `https://app.Asendia AI.com/bhwidget`. Make sure it is enabled.
+- Add all the User Types you want to be able to see these Custom Tabs. Note that if you don’t select any User Types, the tabs won’t be visible for anyone.
+- Click Save. You just added Custom Tabs for Candidate entities!
+
+<img
+  src="/images/bullhorn2.png"
+  alt="Bullhorn2"
+  title="Bullhorn2"
+  className="mx-auto"
+/>
+
+For Job entities you need to do the same. Note that if you use Job I, Job II, …, you will need to add a custom tab for each of those entities as well. Follow these steps:
+
+- Select the `Job` Field Map Entity and go into the `Custom Tabs` tab.
+- Click Add New. The name for the tab should be `Asendia AI` and the URL should be `https://app.Asendia AI.com/bhwidget`. Make sure it is enabled.
+- Add all the User Types you want to be able to see these Custom Tabs. Note that if you don’t select any User Types, the tabs won’t be visible for anyone.
+- Click Save. You just added Custom Tabs for Job entities!
+
+![Bullhorn3](/images/bullhorn3.png)
+
+## Your integration is now ready!
+
+## **Step 5: Send Interview Invite to Candidate**
+
+### **5.1 Add Candidate to Job**
+
+First, make sure both the **Job** and the **Candidate** exist in Bullhorn.
+
+### **5.2 Create Submission**
+
+1. Open the **Job** in Bullhorn
+2. Go to the **top right corner** and click **Action**
+3. Select **Add Submission**
+4. Choose the **Candidate** to add to this job
+5. Set the **status** to **"Asendia Interview"** ⭐
+6. Click **Save**
+
+![Bullhorn4](/images/bullhorn4.png)
+
+![Bullhorn5](/images/bullhorn5.png)
+
+### **5.3 What Happens Next**
+
+Once you save the submission with "Asendia Interview" status:
+
+1. **Webhook triggers** (if configured) OR **next sync cycle** (every 15 minutes)
+2. **Email sent** to candidate with magic link
+3. **Resume auto-fetched** from Bullhorn (Files tab or description field)
+4. **Candidate record created** in Asendia assessment
+
+The candidate receives an email like this:
+
+> Subject: Interview Invitation - [Job Title] at [Company]
+>
+> Hi [Candidate Name],
+>
+> You've been invited to complete an AI-powered interview for the [Job Title] position at [Company].
+>
+> Click here to start: [Magic Link]
+>
+> This interview takes about 15-20 minutes and can be completed at your convenience.
+
+---
+
+## **Step 6: View Interview Results in Bullhorn**
+
+### **6.1 Files Attached to Job**
+
+After the candidate **completes the interview**, you will find:
+
+- **Interview Assessment PDF** - Full detailed report
+- **Interview Summary** - Quick overview with scores
+
+These files are saved in the **Files section inside the Job**.
+
+![Bullhorn7](/images/bullhorn7.png)
+
+### **6.2 Asendia Tab in Candidate Profile**
+
+Inside the **Candidate profile**, there is a dedicated **"Asendia"** custom tab.
+
+Here you can see:
+
+- **All interview results** for this candidate across all jobs
+- **Overall scores** and assessment ratings
+- **Interview transcripts** and AI analysis
+- **Quick action buttons** to view full reports
+
+![Bullhorn8](/images/bullhorn8.png)
+
+### **6.3 Automatic Status Update**
+
+When the interview is complete, Asendia automatically:
+
+- Updates JobSubmission status to **"Asendia Assessment Complete"**
+- Adds interview assessment PDF to Candidate files
+- Adds interview assessment PDF to JobOrder files
+- Creates a Note with score summary
+
+---
+
+## **Step 7: AI Talent Sourcing Widget (Custom Tab)**
+
+Asendia provides a second custom tab for **AI-powered candidate sourcing** directly within Bullhorn.
+
+### **7.1 Access Sourcing Tab**
+
+1. Open any **Job** in Bullhorn
+2. Click on the **"Asendia Sourcing"** tab
+3. The widget will automatically load matching candidates from Asendia's talent pool
+
+### **7.2 How It Works**
+
+The AI Sourcing widget:
+
+- Analyzes the job description using AI
+- Searches Asendia's external talent database
+- Returns top 100 matching candidates ranked by fit score
+- Allows you to contact candidates directly
+
+![Bullhorn9](/images/bullhorn9.png)
+
+### **7.3 Candidate Information Shown**
+
+For each matched candidate, you'll see:
+
+- Name, title, and location
+- Overall match score (0-100%)
+- Key skills and experience
+- Work history summary
+- Contact information (if available)
+
+### **7.4 Taking Action**
+
+From the sourcing widget, you can:
+
+- **Export to Bullhorn** - Create candidate record in Bullhorn with resume
+- **Send Interview Invite** - Directly invite to Asendia AI interview
+- **View Full Profile** - Open detailed candidate profile
+
+**TIP**
+
+The sourcing widget uses the same AI matching algorithm as Asendia's main talent search, optimized for job descriptions.
+
+---
+
+## **Step 8: Bulk Export Candidates from Asendia to Bullhorn**
+
+If you have candidates in Asendia's database that you want to add to Bullhorn:
+
+### **8.1 Access Talent Search**
+
+1. Go to **Talent Search** in Asendia dashboard
+2. Enter your search query or paste a job description
+3. Review the matched candidates
+
+### **8.2 Select Candidates**
+
+1. Check the boxes next to candidates you want to export
+2. You can select multiple candidates at once
+3. Click **"Export to Bullhorn"** button
+
+### **8.3 Export Process**
+
+For each selected candidate, Asendia will:
+
+- ✅ Create a **Candidate** record in Bullhorn
+- ✅ Upload their **Resume PDF** to Bullhorn Files
+- ✅ Optionally create a **JobSubmission** linking them to a specific job
+
+### **8.4 Resume Handling**
+
+Asendia automatically generates professional resume PDFs from candidate data:
+
+- Uses existing resume file if available
+- Otherwise, creates formatted PDF from profile data
+- Includes work history, education, skills, and contact info
+
+---
+
+## **Troubleshooting**
+
+### **Issue: "Interactive OAuth Required" Error**
+
+**Cause:** Your Bullhorn org enforces SSO, requires Terms of Service acceptance, or the API user needs password auth enabled.
+
+**Solution:**
+
+1. The error message will include an OAuth URL
+2. Open that URL in your browser
+3. Complete the interactive authorization
+4. Copy the **code** parameter from the redirect URL
+5. Contact Asendia support to complete the setup with this code
+
+---
+
+### **Issue: No Jobs Syncing**
+
+**Checklist:**
+
+- ✅ Are there **open jobs** in Bullhorn? (Closed jobs are not synced)
+- ✅ Is the Bullhorn user account an **API user**?
+- ✅ Check integration status in Asendia dashboard (Settings → Integrations)
+- ✅ Try clicking **"Sync Jobs Now"** button in Asendia
+
+**Logs to check:**
+
+- Asendia dashboard → Settings → Integration Logs
+- Look for errors like "401 Unauthorized" or "Token expired"
+
+---
+
+### **Issue: Candidate Not Receiving Email**
+
+**Checklist:**
+
+- ✅ Does the candidate have a **valid email address** in Bullhorn?
+- ✅ Is the JobSubmission status exactly **"Asendia Interview"**? (case-insensitive, but must contain both words)
+- ✅ Check spam folder
+- ✅ Look in Asendia dashboard → Candidates to see if invite was logged
+
+**Idempotency behavior:**
+
+- Asendia will **not re-send** invites if the same candidate email was invited for the same job within the last 14 days
+- This prevents duplicate emails when statuses change multiple times
+
+---
+
+### **Issue: Interview Results Not Appearing in Bullhorn**
+
+**Checklist:**
+
+- ✅ Did the candidate **complete** the interview? (Check in Asendia dashboard)
+- ✅ Check **Job Files** tab in Bullhorn for PDF attachments
+- ✅ Check **Candidate Files** tab in Bullhorn
+- ✅ Look for a **Note** on the candidate with "Asendia Assessment" in the action
+
+**File upload requirements:**
+
+- Bullhorn requires `fileType="SAMPLE"` (literal value)
+- Some Bullhorn clusters have different file API behaviors
+
+---
+
+### **Issue: Custom Tabs Not Showing**
+
+**Cause:** Custom tabs must be configured by Bullhorn admin.
+
+**Solution:**
+
+1. Contact your Bullhorn admin or Bullhorn support
+2. Request to add custom tabs with these URLs:
+
+**Asendia AI Interview Tab:**
+
+- **Name:** "Asendia"
+- **URL:** `https://recruiter.asendia.ai/api/bullhorn/interview/entry?orgID={orgID}`
+- **Entities:** Candidate
+
+**Asendia Sourcing Tab:**
+
+- **Name:** "Asendia Sourcing"
+- **URL:** `https://recruiter.asendia.ai/api/bullhorn/job-matching/entry?orgID={orgID}`
+- **Entities:** JobOrder
+
+---
+
+### **Issue: Resume Not Found**
+
+**Asendia tries multiple strategies:**
+
+1. **File Attachments** - Checks Bullhorn Files tab for resume uploads
+2. **Description Field** - Uses parsed resume text from candidate description
+3. **Synthetic PDF** - Generates professional PDF from description text
+
+**If none work:**
+
+- Manually upload resume to candidate in Bullhorn
+- Ensure resume is marked as type "Resume" with proper file extension
+- Contact Asendia support if automatic resume parsing is failing
+
+---
+
+## **Feature Reference**
+
+### **Automatic Behaviors**
+
+![Image](/images/image.png)
+
+### **Magic Link Behavior**
+
+- **One-click access** - No password required
+- **Pre-filled data** - Candidate name, email, resume auto-loaded
+- **Secure tokens** - Expire after first use
+- **Mobile-friendly** - Works on any device
+
+### **Resume Auto-Fetch Priority**
+
+1. **File Attachments** with type="Resume" (highest priority)
+2. Document files (PDF, DOC, DOCX) in Files tab
+3. **Description field** (parsed resume text)
+4. Generated PDF from available data
+
+---
+
+## **Best Practices**
+
+### **✅ Do's**
+
+- Use descriptive job titles and clear job descriptions for better AI matching
+- Keep candidate email addresses up-to-date in Bullhorn
+- Upload candidate resumes to Bullhorn Files tab when available
+- Review interview assessments in both Bullhorn and Asendia dashboard
+- Use custom fields to track Asendia scores in Bullhorn reports
+
+### **❌ Don'ts**
+
+- Don't manually change candidate status while interview is in progress
+- Don't delete JobSubmissions before interview is complete
+- Don't use multiple statuses with "Asendia" in the name (causes confusion)
+- Don't modify Bullhorn credentials without updating Asendia integration
+
+### **Security**
+
+- All OAuth credentials are stored encrypted in Azure Key Vault
+- Magic links expire after first use
+- Webhooks are authenticated with HMAC signatures
+- Resume data is stored in secure Azure Blob Storage
+- All API requests use TLS 1.2+
+
+---
+
+### **Integration Health**
+
+Monitor your integration health:
+
+1. Go to **Settings → Integrations → Bullhorn**
+2. View metrics: Jobs synced, Invites sent, Interviews completed
+3. Check the last sync time and connection status
+
+---
+
+🔥 **Asendia AI isn’t just automating interviews — it’s reinventing them.**
+
+![Screenshot2025 08 26at7 14 34PM](/images/Screenshot2025-08-26at7.14.34PM.png)
